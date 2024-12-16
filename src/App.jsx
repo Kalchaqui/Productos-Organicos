@@ -1,14 +1,22 @@
 import Header from "./components/Header"
 import Productos from "./components/Productos"
 import { useState } from "react"
+import { db } from "./data/db"
+
+
 
 
 // lod componentes deberan ser .tsx o .jsx, tiene 2 propositos: ser re-utilizable y separar la funcionalidad
 // Los componentes siempre tiene que tener un return() que es lo que muestra en pantalla
 function App() {
 
-    //STATE
-    const [auth, setAuth] = useState(false)
+    const [data, setData] = useState(db) //Si fuera una API es recomendable el useEffect
+    //STATE Hooks se colocan en la parte superior, fuera de condicionales
+    //const [auth, setAuth] = useState(false)
+    //const [total, setTotal] = useState(0)
+    //const [cart, setCart] = useState([])
+
+
      
 
   return (
@@ -20,8 +28,14 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
+            {data.map(()=>( 
+                <Productos />
+
+                )
+            )}
             
-            <Productos />
+           
+
 
         </div>
     </main>
