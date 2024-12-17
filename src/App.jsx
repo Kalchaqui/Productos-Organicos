@@ -2,7 +2,8 @@ import Header from "./components/Header"
 import Productos from "./components/Productos"
 import { useState } from "react"
 import { db } from "./data/db"
-
+//Props|| sirve para que los componentes se comuniquen entre ellos
+//Se pasan de padre a hijo, no al revez.
 
 
 
@@ -28,11 +29,14 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-            {data.map(()=>( 
-                <Productos />
-
-                )
-            )}
+            {data.map((productos)=>( 
+                <Productos 
+                key={productos.id}
+                productos={productos}
+                />
+                
+                
+            ))}
             
            
 
