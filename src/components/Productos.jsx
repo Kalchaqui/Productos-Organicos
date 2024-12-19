@@ -1,9 +1,10 @@
-export default function Productos({productos}){
+export default function Productos({productos, addToCart}){
     
     const{name, price, id, description, image} = productos
     
 
     
+
     return (
         <div className="col-md-6 col-lg-4 my-4 row align-items-center">
                 <div className="col-4">
@@ -16,6 +17,7 @@ export default function Productos({productos}){
                     <button 
                         type="button"
                         className="btn btn-dark w-100"
+                        onClick={() => addToCart(productos)}
                     >Agregar al Carrito</button>
                 </div>
             </div>

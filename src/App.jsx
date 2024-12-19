@@ -15,14 +15,17 @@ function App() {
     //STATE Hooks se colocan en la parte superior, fuera de condicionales
     //const [auth, setAuth] = useState(false)
     //const [total, setTotal] = useState(0)
-    //const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([])
 
+function addToCart(iten){
+    setCart(prevCart => [...prevcart, iten])
 
+}
      
 
   return (
     <>
-      
+        
     <Header />
     
     <main className="container-xl mt-5">
@@ -33,6 +36,9 @@ function App() {
                 <Productos 
                 key={productos.id}
                 productos={productos}
+                setCart={setCart}
+                cart={cart}
+                addToCart = {addToCart}
                 />
                 
                 
