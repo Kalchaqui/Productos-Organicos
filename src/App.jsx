@@ -20,8 +20,10 @@ function App() {
 function addToCart(item){
 
     const itemExists =cart.findIndex(productos=>productos.id === item.id)
-if(itemExists >=0){//existe en el carrito
-
+    if(itemExists >=0){//existe en el carrito
+        const updateCart = [...cart]
+        updateCart[itemExists].quantity++
+        setCart(updateCart)
 }else{
     item.quantity = 1
     setCart([...cart, item])
