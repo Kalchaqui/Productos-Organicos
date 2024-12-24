@@ -1,23 +1,34 @@
 import Header from "./components/Header"
 import Productos from "./components/Productos"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { db } from "./data/db"
 //Props|| sirve para que los componentes se comuniquen entre ellos
 //Se pasan de padre a hijo, no al revez.
 
+//El state en react es sincrono o asincrono? Es Asincrono
+//porque otras funciones se pueden mandar a llamar aunque no se alla escrito a la primera vez 
 
 
 // lod componentes deberan ser .tsx o .jsx, tiene 2 propositos: ser re-utilizable y separar la funcionalidad
 // Los componentes siempre tiene que tener un return() que es lo que muestra en pantalla
 function App() {
 
-    const [data, setData] = useState(db) //Si fuera una API es recomendable el useEffect
+    const initialCart = () => {
+        const localStorageCart = localStorage.getItem('cart')
+        return localStorageCart ? JSON.parse(localStorageCart) : []
+    }
+
+    const [data] = useState(db) //Si fuera una API es recomendable el useEffect
     //STATE Hooks se colocan en la parte superior, fuera de condicionales
     //const [auth, setAuth] = useState(false)
     //const [total, setTotal] = useState(0)
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(initialCart)
     const MAX_ITEMS = 100
     const MIN_ITEMS = 1
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
 
 function addToCart(item){
 
@@ -31,6 +42,7 @@ function addToCart(item){
     item.quantity = 1
     setCart([...cart, item])
 }
+
 }
      
 function removeFromCart(id){
@@ -66,6 +78,8 @@ function decreaseQuantity(id){
     function clearCart(){
         setCart([])
     }
+
+ 
 
   return (
     <>
