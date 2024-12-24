@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 
-function Header({cart, removeFromCart}){ //De esta forma ya lo hace un componente, abajo incluye el return()
+function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart}){ //De esta forma ya lo hace un componente, abajo incluye el return()
 
     //State Derivado
 const isEmpy = useMemo(() => cart.length === 0[cart]) //derivado
@@ -52,9 +52,12 @@ const cartTotal = useMemo( () => cart.reduce((total, item)=> total + (item.quant
                                                 ${productos.price}
                                         </td>
                                         <td className="flex align-items-start gap-4">
+                                            
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={()=> decreaseQuantity(productos.id)}
+
                                             >
                                                 -
                                             </button>
@@ -62,6 +65,7 @@ const cartTotal = useMemo( () => cart.reduce((total, item)=> total + (item.quant
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
+                                                onClick={()=> increaseQuantity(productos.id)}
                                             >
                                                 +
                                             </button>
@@ -81,7 +85,13 @@ const cartTotal = useMemo( () => cart.reduce((total, item)=> total + (item.quant
                             </table>
     
                             <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
-                            <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                            
+                            <button 
+                            className="btn btn-dark w-100 mt-3 p-2"
+                            onClick = {clearCart}
+
+                            >Vaciar Carrito
+                                </button>
                             </>
                         )}
                             </div>
