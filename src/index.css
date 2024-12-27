@@ -159,7 +159,7 @@ body {
   font-family: "Outfit", sans-serif;
   font-weight: 900;
   line-height: 1.2;
-  color: #e99401;
+  color: #386822;
 }
 
 h1, .h1 {
@@ -313,7 +313,7 @@ button:not(:disabled),
 }
 
 .img-fluid {
-  max-width: 100%;
+  max-width: 120%;
   height: auto;
 }
 
