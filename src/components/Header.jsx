@@ -12,7 +12,7 @@ const cartTotal = useMemo( () => cart.reduce((total, item)=> total + (item.quant
         <div className="container-xl">
             <div className="row justify-content-center justify-content-md-between">
                 <div className="col-8 col-md-3">
-                    <a href="index.html">
+                    <a href="/">
                         <img className="img-fluid" src="/img/logo.png" alt="imagen logo" />
                     </a>
                 </div>
@@ -85,7 +85,12 @@ const cartTotal = useMemo( () => cart.reduce((total, item)=> total + (item.quant
                             </table>
     
                             <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
-                            
+                            <button 
+  className="btn btn-dark btn-success w-100 mt-3 p-2"
+  onClick={() => window.location.href = "/checkout"}
+>
+  Pagar
+</button>
                             <button 
                             className="btn btn-dark w-100 mt-3 p-2"
                             onClick = {clearCart}
@@ -93,6 +98,7 @@ const cartTotal = useMemo( () => cart.reduce((total, item)=> total + (item.quant
                             >Vaciar Carrito
                                 </button>
                             </>
+                            
                         )}
                             </div>
                     </div>

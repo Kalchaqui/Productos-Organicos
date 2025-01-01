@@ -2,6 +2,10 @@ import Header from "./components/Header"
 import Productos from "./components/Productos"
 import { useState, useEffect } from "react"
 import { db } from "./data/db"
+import Checkout from "./components/Checkout";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
 //Props|| sirve para que los componentes se comuniquen entre ellos
 //Se pasan de padre a hijo, no al revez.
 
@@ -58,7 +62,7 @@ function increaseQuantity(id){
             }
         }
         return item
-    })
+    })  
     setCart(updatedCart)
 }
 
@@ -82,8 +86,11 @@ function decreaseQuantity(id){
  
 
   return (
-    <>
+    
+    <Router>
         
+    
+
     <Header 
     cart={cart}
     removeFromCart={removeFromCart}
@@ -92,7 +99,9 @@ function decreaseQuantity(id){
     clearCart={clearCart}
     />
 
+<Routes>
     
+<Route path="/" element={
     <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
@@ -114,16 +123,19 @@ function decreaseQuantity(id){
 
         </div>
     </main>
-
-
+ }
+ />
+                <Route path="/checkout" element={<Checkout cart={cart} clearCart={clearCart} />} />
+                </Routes>
     <footer className="bg-dark mt-5 py-5">
         <div className="container-xl">
             <p className="text-white text-center fs-4 mt-4 m-md-0">Productor Orgánicos - Todos los derechos Reservados</p>
         </div>
     </footer>
+    </Router>
 
-    </>
-  )
+    
+  );
 }
 
 export default App
